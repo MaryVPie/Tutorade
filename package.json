@@ -1,0 +1,24 @@
+{
+  "name": "tutorade",
+  "version": "1.0.0",
+  "description": "Finding a Tutor is so Refreshing!!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conso97/Tutorade.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Conso97/Tutorade/issues"
+  },
+  "homepage": "https://github.com/Conso97/Tutorade#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "mysql": "^2.18.1"
+  }
+}
