@@ -5,7 +5,7 @@ Finding a Tutor is so Refreshing!!
 
 ## About
 
- This app helps students and tutors find each others.
+ This app helps students and tutors connect with each other.
 
 ## Users Stories
 
