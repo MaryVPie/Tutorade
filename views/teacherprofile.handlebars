@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <small>Student ID: {{student.id}}</small>
+            <small>Teacher ID: {{teacher.TeacherId}}</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <form class="mb-3 disabledinput" id="updateTeacher" method="post" action="/api/teacher/{{teacher.id}}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <h2>
+                            <label for="name-first">First Name</label>
+                            <input type="text" class="form-control disabledinput" id="teacher-name-first"
+                                name="name_first" value="{{teacher.name_first}}" disabled />
+                        </h2>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <h2>
+                            <label for="name-first">Last Name</label>
+                            <input type="text" class="form-control disabledinput" id="student-name-last"
+                                name="name_last" value="{{teacher.name_last}}" disabled />
+                        </h2>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <legend>Schedule:</legend>
+                    <div class="form-check">
+                        <input class="form-check-input disabledinput" type="checkbox" id="selectmonday" name="monday"
+                            {{#if teacher.Schedule.monday}}checked{{/if}} disabled />
+                        <label class="form-check-label" for="selectmonday">
+                            Monday {{#if teacher.Schedule.monday}}
+                            <small>Currently Enrolled</small>
+                            {{/if}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input disabledinput" type="checkbox" id="selecttuesday" name="tuesday"
+                            {{#if teacher.Schedule.tuesday}}checked{{/if}} disabled />
+                        <label class="form-check-label" for="selecttuesday">
+                            Tuesday {{#if teacher.Schedule.tuesday}}
+                            <small>Currently Enrolled</small>
+                            {{/if}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input disabledinput" type="checkbox" id="selectwednesday"
+                            name="wednesday" {{#if teacher.Schedule.wednesday}}checked{{/if}} disabled />
+                        <label class="form-check-label" for="selectwednesday">
+                            Wednesday {{#if teacher.Schedule.wednesday}}
+                            <small>Currently Enrolled</small>
+                            {{/if}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input disabledinput" type="checkbox" id="selectthursday"
+                            name="thursday" {{#if teacher.Schedule.thursday}}checked{{/if}} disabled />
+                        <label class="form-check-label" for="selectthursday">
+                            Thursday {{#if teacher.Schedule.thursday}}
+                            <small>Currently Enrolled</small>
+                            {{/if}}
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input disabledinput" type="checkbox" id="selectfriday" name="friday"
+                            {{#if teacher.Schedule.friday}}checked{{/if}} disabled />
+                        <label class="form-check-label" for="selectfriday">
+                            Friday {{#if teacher.Schedule.friday}}
+                            <small>Currently Enrolled</small>
+                            {{/if}}
+                        </label>
+                    </div>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes</label>
+                    <input type="text" class="form-control disabledinput" id="notes" name="notes"
+                        value="{{teacher.notes}}" disabled />
+                </div>
+                {{!--
+                <button class="btn btn-success" type="submit">Update Teacher</button> --}}
+            </form>
+            <button id="edit" class="btn btn-primary">Edit Teacher</button>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="post" action="/api/teacher/del/{{teacher.id}}">
+                    <button action="submit" class="btn btn-danger btn-sm" id="deleteTeacher">Delete Teacher</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="/">Go to Week View</a>
+</div>"
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    //edit student btn make form editable
+    $('#edit').on('click', function () {
+        console.log('editing');
+        $('#updateTeacher').append(
+            $('<button>')
+                .attr({ type: 'submit', class: 'btn btn-success', id: 'updatebtn' })
+                .text('Update Teacher')
+        );
+        $('.disabledinput').each(function (thing) {
+            $(this).prop('disabled', false);
+        });
+    });
+</script>
