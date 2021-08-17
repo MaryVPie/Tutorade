@@ -1,11 +1,16 @@
-const Schedule = require('./Schedule');
-const Student = require('./Student');
-const Tutor = require('./Tutor');
+const User = require('./User');
+const Language = require('./Language');
+const Role = require('./Role.js');
+const UserLanguage = require('./UserLanguage');
 
-Student.hasOne(Schedule);
-Schedule.belongsTo(Student);
 
-Tutor.hasMany(Schedule);
-Schedule.belongsTo(Tutor);
+Role.hasMany(User);
+User.belongsTo(Role);
 
-module.exports = { Schedule, Student, Tutor };
+User.hasOne(UserLanguage);
+Language.belongsTo(UserLanguage);
+
+UserLanguage.hasMany(Language);
+
+// Ask Anotny for the relationship
+module.exports = { User, Language, Role, UserLanguage };
