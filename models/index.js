@@ -7,7 +7,7 @@ const UserLanguage = require('./UserLanguage');
 Role.hasMany(User);
 User.belongsTo(Role);
 
-User.hasOne(UserLanguage);
+User.hasMany(UserLanguage);
 Language.belongsTo(UserLanguage);
 
 UserLanguage.hasMany(Language);
