@@ -1,26 +1,24 @@
 const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Student extends Model {
+class Tutor extends Model {
 
 }
 
-Student.init(
+Tutor.init(
   {
     name_first: DataTypes.STRING,
     name_last: DataTypes.STRING,
-    age: DataTypes.INTEGER,
-    gender: DataTypes.STRING,
-    notes: DataTypes.TEXT,
+    phone: DataTypes.STRING,
+    email: DataTypes.STRING
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'student',
+    modelName: 'tutor',
   }
 );
 
-module.exports = Student;
+module.exports = Tutor;
