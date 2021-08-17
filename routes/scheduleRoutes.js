@@ -4,14 +4,14 @@ module.exports = function(app) {
   //get whole schedule
   app.get('/api/schedule', function(req, res) {
     db.Schedule.findAll({
-      include: [db.Child]
+      include: [db.Student]
     }).then(function(dbSchedule) {
       JSON.stringify(dbSchedule);
       res.json(dbSchedule);
     });
   });
 
-  //get schedule by child id
+  //get schedule by student id
   app.get('/api/schedule/:cid', function(req, res) {
     db.Schedule.findAll({
       where: {
@@ -23,10 +23,10 @@ module.exports = function(app) {
     });
   });
 
-  //update child
-  app.post('/api/schedule/:childid', function(req, res) {
+  //update student
+  app.post('/api/schedule/:studentid', function(req, res) {
 		var theSchedule = {};
-		theSchedule.ChildId = req.params.childid;
+		theSchedule.StudentId = req.params.studentid;
 		var days = ["monday","tuesday","wednesday","thursday","friday"];
 		for (var i=0; i <days.length;i++){
 			if (days[i] in req.body){
@@ -38,20 +38,19 @@ module.exports = function(app) {
 			}
 		}
     db.Schedule.findOrCreate({
-      where: {ChildId: req.params.childid},
+      where: {StudentId: req.params.studentid},
       defaults: theSchedule
     }).then(function(dbSchedule) {
-      res.render("addanotherchildprompt",{pid:req.body.ParentId});
+      res.render("addanotherchildprompt",{pid:req.body.TutorId});
     });
   });
 
-  //add new child
-  app.post('/api/child', function(req, res) {
-    //console.log(req.body);
-    db.Child.create(req.body).then(function(dbChild) {
-      console.log(dbChild);
-      //res.json(dbChild);
-      res.render('schedulechild', {childid: dbChild.id});
+  //add new student
+  app.post('/api/student', function(req, res) {
+    console.log(req.body);
+    db.Child.create(req.body).then(function(dbStudent) {
+      console.log(dbStudent);
+      res.render('schedulechild', { studentid: dbStudent.id});
     });
   });
 
