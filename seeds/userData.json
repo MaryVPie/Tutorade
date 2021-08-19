@@ -1,17 +1,19 @@
-[
-  {
-    "name": "Sal",
-    "email": "sal@hotmail.com",
-    "password": "password12345"
-  },
-  {
-    "name": "Lernantino",
-    "email": "lernantino@gmail.com",
-    "password": "password12345"
-  },
-  {
-    "name": "Amiko",
-    "email": "amiko2k20@aol.com",
-    "password": "password12345"
-  }
+[{
+        "first_name": "Light",
+        "last_name": "Yagami",
+        "email": "deathnote@hotmail.com",
+        "password": "GodsofDeath17"
+    },
+    {
+        "first_name": "Goku",
+        "last_name": "Ball",
+        "email": "bring_them_back@gmail.com",
+        "password": "drogonfinder12"
+    },
+    {
+        "first_name": "Usagi",
+        "last_name": "Moon",
+        "email": "moonchild@gamil.com",
+        "password": "silvercrystal14"
+    }
 ]
