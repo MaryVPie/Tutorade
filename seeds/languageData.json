@@ -1,19 +1,38 @@
 [{
-        "title": "python"
+        "title": "C"
 
 
     },
 
     {
-        "title": "HTML"
+        "title": "C#"
 
     },
 
     {
-        "title": "SQL"
+        "title": "C++"
+    },
+    {
+        "title": "Python"
+    },
+    {
+        "title": "Java"
     },
     {
         "title": "Javascript"
+    },
+    {
+        "title": "PHP"
+    },
+    {
+        "title": "Ruby"
+    },
+    {
+        "title": "TypeScript"
+    },
+    {
+        "title": "SQL"
     }
+
 
 ]
