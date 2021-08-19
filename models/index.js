@@ -7,10 +7,25 @@ const UserLanguage = require('./UserLanguage');
 Role.hasMany(User);
 User.belongsTo(Role);
 
-User.hasMany(UserLanguage);
-Language.belongsTo(UserLanguage);
+User.belongsToMany(Language, {
+    // Define the third table needed to store the foreign keys
+    through: {
+        model: UserLanguage,
+        unique: false
+    },
+    // Define an alias for when data is retrieved
+    as: 'languages'
+});
 
-UserLanguage.hasMany(Language);
-
+Language.belongsToMany(User, {
+    // Define the third table needed to store the foreign keys
+    through: {
+        model: UserLanguage,
+        unique: false
+    },
+    // Define an alias for when data is retrieved
+    as: 'users'
+});
 // Ask Anotny for the relationship
 module.exports = { User, Language, Role, UserLanguage };
+
