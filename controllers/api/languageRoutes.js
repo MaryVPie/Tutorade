@@ -1,44 +1,38 @@
-var db = require('../models');
+const router = require('express').Router();
+const { Language } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-module.exports = function(app) {
-
-	// Get all Teachers
-  app.get('/api/Parent', function(req, res) {
-    db.Teacher.findAll({
-      include: [db.Student]
-    }).then(function(dbTeacher) {
-      JSON.stringify(dbTeacher);
-      res.json(dbTeacher);
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newLanguage = await Language.create({
+      ...req.body,
+      // user_id: req.session.user_id,
     });
-  });
 
-	//Get only (one) Teacher
-  app.get('/api/Teacher/:id', function(req, res) {
-    db.Teacher.findOne({
-      where: {id: req.params.id},
-      include: [db.Student]
-    }).then(function (dbTeacher) {
-      res.json(dbTeacher);
-    });
-  });
+    res.status(200).json(newLanguage);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
-	//register Teacher and proceed to add students form
-  app.post('/api/Teacher', function(req, res) {
-    db.Teacher.create(req.body).then(function (dbTeacher) {
-          // console.log to test the api's then we can later comment it out
+// router.delete('/:id', withAuth, async (req, res) => {
+//   try {
+//     const languageData = await Language.destroy({
+//       where: {
+//         id: req.params.id,
+//         user_id: req.session.user_id,
+//       },
+//     });
 
-      console.log(dbTeacher);
-      res.render("newstudent", { pid: dbTeacher.id});
-    });
-  })
+//     if (!languageData) {
+//       res.status(404).json({ message: 'No language found with this id!' });
+//       return;
+//     }
 
-  app.delete('/api/Teacher/:id', function(req, res) {
-    db.Teacher.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (dbTeacher) {
-      res.json(dbTeacher);
-    });
-  });
-};
+//     res.status(200).json(languageData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+module.exports = router;

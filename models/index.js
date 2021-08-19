@@ -1,31 +1,44 @@
-const User = require('./User');
+const Tutor = require('./Tutor');
+const Student = require('./Student');
 const Language = require('./Language');
-const Role = require('./Role.js');
-const UserLanguage = require('./UserLanguage');
+const Role = require('./Role');
 
 
-Role.hasMany(User);
-User.belongsTo(Role);
+Role.hasMany(Tutor);
+Tutor.belongsTo(Role);
 
-User.belongsToMany(Language, {
-    // Define the third table needed to store the foreign keys
-    through: {
-        model: UserLanguage,
-        unique: false
-    },
-    // Define an alias for when data is retrieved
-    as: 'languages'
+Tutor.belongsToMany(Language, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Language,
+    unique: false
+  },
+  // Define an alias for when data is retrieved
+  as: 'languages'
+});
+Role.hasMany(Student);
+Student.belongsTo(Role);
+
+Student.belongsToMany(Language, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Language,
+    unique: false
+  },
+  // Define an alias for when data is retrieved
+  as: 'languages'
 });
 
-Language.belongsToMany(User, {
-    // Define the third table needed to store the foreign keys
-    through: {
-        model: UserLanguage,
-        unique: false
-    },
-    // Define an alias for when data is retrieved
-    as: 'users'
+
+Language.belongsToMany(Role, {
+  // Define the third table needed to store the foreign keys
+  through: {
+    model: Language,
+    unique: false
+  },
+  // Define an alias for when data is retrieved
+  as: 'roles'
 });
 // Ask Anotny for the relationship
-module.exports = { User, Language, Role, UserLanguage };
+module.exports = { Tutor, Student, Language, Role };
 
