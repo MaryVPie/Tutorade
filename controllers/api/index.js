@@ -1,8 +1,15 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
-const projectRoutes = require('./projectRoutes');
+const roleRoutes = require('./roleRoutes');
+const languageRoutes = require('./languageRoutes');
+const userlanguageRoutes = require('./userlanguageRoutes.js');
+const formsRoutes = require('./formsRoutes');
+
 
 router.use('/users', userRoutes);
-router.use('/projects', projectRoutes);
+router.use('/role', roleRoutes);
+router.use('/language', languageRoutes);
+router.use('/userlanguage', userlanguageRoutes);
+router.use('/forms', formsRoutes )
 
 module.exports = router;

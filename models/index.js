@@ -1,13 +1,16 @@
 const User = require('./User');
-const Project = require('./Project');
+const Language = require('./Language');
+const Role = require('./Role.js');
+const UserLanguage = require('./UserLanguage');
 
-User.hasMany(Project, {
-  foreignKey: 'user_id',
-  onDelete: 'CASCADE'
-});
 
-Project.belongsTo(User, {
-  foreignKey: 'user_id'
-});
+Role.hasMany(User);
+User.belongsTo(Role);
 
-module.exports = { User, Project };
+User.hasMany(UserLanguage);
+Language.belongsTo(UserLanguage);
+
+UserLanguage.hasMany(Language);
+
+// Ask Anotny for the relationship
+module.exports = { User, Language, Role, UserLanguage };
