@@ -1,22 +1,61 @@
-var db = require('../../models');
+const router = require('express').Router();
+const { User } = require('../../models');
 
-module.exports = function(app) {
-  app.get('/', function(req, res) {
-    db.Schedule.findAll({include: [db.Student]}).then(function(dbSchedule) {
-      res.render('index', {schedules: dbSchedule});
+router.post('/', async (req, res) => {
+  try {
+    const userData = await User.create(req.body);
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
     });
-  });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
 
-  app.get('/genStudents', function(req, res) {
-    res.render('testdbPostRoutes');
-  });
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
-  app.get('/studentprofile/:id', function(req, res) {
-    db.Student.findOne({
-			where:{id:req.params.id},
-			include: [db.Schedule]
-    }).then(function(dbStudent) {
-      res.render("studentprofile", { student: dbStudent, days: dbStudent.Schedule});
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    const validPassword = await userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
-  });
-};
+
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+module.exports = router;
