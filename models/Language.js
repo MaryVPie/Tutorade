@@ -11,6 +11,12 @@ Language.init(
             type: DataTypes.STRING(30),
             allowNull: false,
         },
+        language_id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true,
+        }
     },
     {
         sequelize,
