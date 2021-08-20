@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
   try {
     // Get all Languages and JOIN with user data
     console.log("debug here");
-    const languageData = await Language.findAll({
-      attributes: ['title'],
+    const languageData = await Student.findAll({
+      attributes: ['first_name'],
       // include: [
       //   {
       //     // model: Language,
@@ -18,12 +18,12 @@ router.get('/', async (req, res) => {
       //   },
       // ],
     });
-    console.log("debug languageData " + languageData );
+    console.log("debug languageData " + JSON.stringify(languageData ));
     // Serialize data so the template can read it
     const languages = languageData.map((language) => language.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('role', { 
+    res.render('login', { 
       languages,
       logged_in: req.session.logged_in 
     });
