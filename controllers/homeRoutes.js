@@ -7,24 +7,28 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
   try {
     // Get all Languages and JOIN with user data
+    console.log("debug here");
     const languageData = await Language.findAll({
-      include: [
-        {
-          model: Language,
-          attributes: ['name'],
-        },
-      ],
+      attributes: ['title'],
+      // include: [
+      //   {
+      //     // model: Language,
+      //     // as: 'languages'
+      //     attributes: ['title'],
+      //   },
+      // ],
     });
-
+    console.log("debug languageData " + languageData );
     // Serialize data so the template can read it
     const languages = languageData.map((language) => language.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
+    res.render('role', { 
       languages,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
     // console.log('Error')
   }

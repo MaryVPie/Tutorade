@@ -10,7 +10,14 @@ Role.init(
         title: {
             type: DataTypes.STRING(30),
             allowNull: false,
-        },    },
+        },
+        role_id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            allowNull: false,
+            primaryKey: true,
+        }    
+    },
     {
         sequelize,
         timestamps: false,
