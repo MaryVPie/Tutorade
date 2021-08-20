@@ -59,4 +59,4 @@ Tutor.init(
     }
 );
 
-module.exports = Tutor;
+module.exports = Tutor; 
