@@ -1,0 +1,25 @@
+[{
+        "first_name": "Hilda",
+        "last_name": "Morgonson",
+        "email": "elfburg@hotmail.com",
+        "password": "password12345"
+    },
+    {
+        "first_name": "Ryan",
+        "last_name": "Reynolds",
+        "email": "chimmichunga@gmail.com",
+        "password": "password12345"
+    },
+    {
+        "first_name": "Bucky",
+        "last_name": "Barns",
+        "email": "whitewolf@gmail.com",
+        "password": "password12345"
+    },
+    {
+        "first_name": "Touru",
+        "last_name": "Honda",
+        "email": "lightheaded@gmail.com",
+        "password": "password12345"
+    }
+]
