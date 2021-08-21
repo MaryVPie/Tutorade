@@ -1,20 +1,25 @@
-[
-  {
-    "first_name": "Sal",
-    "last_name": "Edwards",
-    "email": "sal@hotmail.com",
-    "password": "password12345"
-  },
-  {
-    "first_name": "Lernantino",
-    "last_name": "Suarez",
-    "email": "lernantino@gmail.com",
-    "password": "password12345"
-  },
-  {
-    "first_name": "Amiko",
-    "last_name": "Aidoo",
-    "email": "amiko2k20@aol.com",
-    "password": "password12345"
-  }
+[{
+        "first_name": "Goku",
+        "last_name": "Dragon",
+        "email": "starorb@hotmail.com",
+        "password": "password12345"
+    },
+    {
+        "first_name": "Light",
+        "last_name": "Yagami",
+        "email": "death_note@gmail.com",
+        "password": "password12345"
+    },
+    {
+        "first_name": "Kyo",
+        "last_name": "Soma",
+        "email": "orangecat@gmail.com",
+        "password": "password12345"
+    },
+    {
+        "first_name": "Yuki",
+        "last_name": "Soma",
+        "email": "mouse_tail@gmail.com",
+        "password": "password12345"
+    }
 ]
