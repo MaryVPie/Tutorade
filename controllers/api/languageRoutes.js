@@ -2,6 +2,17 @@ const router = require('express').Router();
 const { Language } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+router.get('/'), withAuth, (req, res) => {
+
+  Language.findAll({})
+  .then(query => {
+    res.status(200).json(query)
+  })
+  .catch(err => res.status(400).json(err))
+
+}
+
+
 router.post('/', withAuth, async (req, res) => {
   try {
     const newLanguage = await Language.create({
