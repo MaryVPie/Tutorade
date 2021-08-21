@@ -1,30 +1,24 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Role extends Model {
+class InstructionLanguage extends Model {
 
 }
 
-Role.init(
+InstructionLanguage.init(
     {
-        title: {
+        language: {
             type: DataTypes.STRING(30),
             allowNull: false,
         },
-        role_id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            allowNull: false,
-            primaryKey: true,
-        }    
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'role',
+        modelName: 'instruction_language',
     }
 );
 
-module.exports = Role;
+module.exports = InstructionLanguage;
