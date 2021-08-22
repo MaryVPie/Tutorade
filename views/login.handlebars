@@ -32,9 +32,23 @@
         <label for="password-signup">password:</label>
         <input class="form-input" type="password" id="password-signup" />
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
-      </div>
+
+
+      <label for="language-select">Choose a language:</label>
+      <select class="form-input" name="language_id" id="language-signup">
+        <option value="">--Please choose an language--</option>
+
+        {{#each languages as |language|}}
+        <option value="{{ language.language_id }}">{{ language.title }}</option>
+        {{/each}}
+
+      </select>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">signup</button>
+  </div>
+  </div>
+
+  <div class="form-group">
     </form>
   </div>
 </div>
