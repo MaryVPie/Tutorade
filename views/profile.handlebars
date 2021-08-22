@@ -6,13 +6,31 @@
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <h3>Learn or Teach a Programming Language</h3>
-
+    <h2>Your current language is {{ language.title }}</h2>
     <form class="form language-form">
-      <div class="form-group">
-        <label for="project-name">Programming Language (one only)</label>
+      
+<div class="form-group">
+
+<label for=“language-select”>Choose a language:</label>
+<select class="form-input" name=“languages” id=“language-select”>
+    <option value=“”>--Please choose an language--</option>
+
+      {{#each languages as |language|}}
+          <option value="{{ language.language_id }}">{{ language.title }}</option>
+      {{/each}}
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+        <label for="project-name">Programming Language (one only)</label><select id=“categoryFilter”>
+                        <option value=“”></option>
+                      </select>
         <input class="form-input" type="text" id="project-name" name="project-name" />
       </div>
+
       <div class="form-group">
         <label for="project-funding">Tutor or Student:</label>
         <input class="form-input" type="number" id="project-funding" name="project-funding" />
@@ -27,22 +45,22 @@
     </form>
   </div>
 
-  {{#if projects.length}}
+  {{!-- {{#if languages.length}}
   <div class="col-md-6 project-list">
     <h3>Current Projects:</h3>
 
-    {{#each projects as |project|}}
+    {{#each languages as |language|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
+        <h4><a href="/project/{{language.language_id}}">{{language.title}}</a></h4>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
+        <button class="btn btn-sm btn-danger" data-id="{{language.language_id}}">DELETE</button>
       </div>
     </div>
     {{/each}}
   </div>
-  {{/if}}
+  {{/if}} --}}
 </div>
 
 <script src="./js/profile.js"></script>

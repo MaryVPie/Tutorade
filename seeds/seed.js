@@ -1,23 +1,23 @@
 const sequelize = require('../config/connection');
-const { Tutor, Student, Language, Role} = require('../models/index');
+const { Language, User} = require('../models/index');
 
 const userData = require('./userData.json');
-const roleData = require('./roleData.json');
+const languageData = require('./languageData.json');
 
 const seedDatabase = async() => {
     await sequelize.sync({ force: true });
 
-    const users = await Student.bulkCreate(userData, {
+    const language = await Language.bulkCreate(languageData, {
         individualHooks: true,
         returning: true,
     });
+console.log(language)
 
-    for (const role of roleData) {
-        await Role.create({
-            ...role,
-            user_id: users[Math.floor(Math.random() * users.length)].id,
-        });
-    }
+    const users = await User.bulkCreate(userData, {
+        individualHooks: true,
+        returning: true,
+    });
+console.log(users)
 
     process.exit(0);
 };

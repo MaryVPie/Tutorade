@@ -1,25 +1,25 @@
 [{
-        "first_name": "Goku",
-        "last_name": "Dragon",
+        "name": "Goku",
         "email": "starorb@hotmail.com",
-        "password": "password12345"
+        "password": "password12345",
+        "languageLanguageId": 3
     },
     {
-        "first_name": "Light",
-        "last_name": "Yagami",
+        "name": "Light",
         "email": "death_note@gmail.com",
-        "password": "password12345"
+        "password": "password12345",
+        "languageLanguageId": 1
     },
     {
-        "first_name": "Kyo",
-        "last_name": "Soma",
+        "name": "Kyo",
         "email": "orangecat@gmail.com",
-        "password": "password12345"
+        "password": "password12345", 
+        "languageLanguageId": 3
     },
     {
-        "first_name": "Yuki",
-        "last_name": "Soma",
+        "name": "Yuki",
         "email": "mouse_tail@gmail.com",
-        "password": "password12345"
+        "password": "password12345", 
+        "languageLanguageId": 2
     }
 ]

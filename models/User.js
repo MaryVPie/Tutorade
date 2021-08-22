@@ -2,13 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Student extends Model {
+class User extends Model {
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
 }
 
-Student.init(
+User.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,16 +16,12 @@ Student.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    first_name: {
-      type: DataTypes.STRING(128),
-      allowNull: false,
-    },
-    last_name: {
-      type: DataTypes.STRING(128),
+    name: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
-      type: DataTypes.STRING(250),
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
@@ -39,6 +35,10 @@ Student.init(
         len: [8],
       },
     },
+    languageLanguageId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    }, 
   },
   {
     hooks: {
@@ -59,4 +59,4 @@ Student.init(
   }
 );
 
-module.exports = Student;
+module.exports = User;

@@ -1,55 +1,14 @@
 const router = require('express').Router();
-const { Student, Tutor, Language, Role} = require('../models');
+const { User, Language } = require('../models');
 const withAuth = require('../utils/auth');
-
-// add search function
 
 router.get('/', async (req, res) => {
   try {
-    // Get all Languages and JOIN with user data
-    console.log("debug here");
-    const languageData = await Student.findAll({
-      attributes: ['first_name'],
-      // include: [
-      //   {
-      //     // model: Language,
-      //     // as: 'languages'
-      //     attributes: ['title'],
-      //   },
-      // ],
-    });
-    console.log("debug languageData " + JSON.stringify(languageData ));
-    // Serialize data so the template can read it
-    const languages = languageData.map((language) => language.get({ plain: true }));
-
+   
     // Pass serialized data and session flag into template
-    res.render('login', { 
-      languages,
+    res.render('homepage', { 
+    
       logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    console.log(err)
-    res.status(500).json(err);
-    // console.log('Error')
-  }
-});
-
-router.get('/language/:id', async (req, res) => {
-  try {
-    const languageData = await Language.findByPk(req.params.id, {
-      include: [
-        {
-          model: Language,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    const language = languageData.get({ plain: true });
-
-    res.render('language', {
-      ...language,
-      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -60,16 +19,20 @@ router.get('/language/:id', async (req, res) => {
 router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    // replace session with role? or leave it
-    const studentData = await Student.findByPk(req.session.user_id, {
+    const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Student }],
+      include: [{ model: Language }],
     });
 
-    const student = studentData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
+    const languageData = await Language.findAll()
+    const languages = languageData.map((language) => language.get({ plain: true }));
+
+    console.log(user)
     res.render('profile', {
-      ...student,
+      ...user,
+      languages,
       logged_in: true
     });
   } catch (err) {
@@ -77,33 +40,15 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
-router.get('/profile', withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const tutorData = await Tutor.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Tutor }],
-    });
-
-    const tutor = tutorData.get({ plain: true });
-
-    res.render('profile', {
-      ...tutor,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-router.get('/login', (req, res) => {
+router.get('/login', async (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/profile');
+    res.redirect('/profile');    
     return;
   }
-
-  res.render('login');
+  const languageData = await Language.findAll()
+  const languages = languageData.map((language) => language.get({ plain: true }));
+  res.render('login', {languages});
 });
 
 module.exports = router;
