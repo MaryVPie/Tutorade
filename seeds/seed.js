@@ -7,7 +7,7 @@ const Language = require('../models/Language')
 const userData = require('./userData.json');
 const languageData = require('./languageData.json');
 
-const seedDatabase = async (forcequit=false) => {
+const seedDatabase = async () => {
     await sequelize.sync({ force: true });
 
     const language = await Language.bulkCreate(languageData, {
@@ -22,9 +22,7 @@ const seedDatabase = async (forcequit=false) => {
     });
     console.log(users)
 
-    if(forcequit){
         process.exit(0);
-    }
 };
-//seedDatabase();
+seedDatabase();
 module.exports = { seedDatabase };
